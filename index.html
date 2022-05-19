@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Mock Wiki</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header class="my-3">
+        <picture class="container">
+            <img src="images/googlelogo_color_272x92dp.png" alt="mock logo of google" width="200" class="mx-auto">
+        </picture>
+    </header>
+    <main>
+        <section class="container">
+            <form id="searchbar" class="search-form-group">
+                <label for="search">Enter search a term or phrase</label>
+                <div class="form-input-group d-flex align-items-center">
+                    <input type="search" name="search" id="search" class="flex-grow-1" autocomplete="off">
+                    <!-- <input type="submit" value="Search" id="searchButton" class="button searchButton" aria-label="Submit button"> -->
+                    <button type="submit" aria-label="Submit button" id="searchButton" class="button searchButton">Search</button>
+                </div>
+            </form>
+        </section>
+        <section class="container">
+            <div class="results-container my-3">
+                <div class="stats-res-bar">
+                    <div class="stats-results" id="stats-results" aria-live="assertive"></div>
+                </div>
+                <!-- dynamic search result block (link tag) -->
+                <a href="" class="link-search-res-block d-flex gap-1" target="_blank">
+                    <img src="images/srch-img-rs-thumbnail.jpeg" alt="" width="100" height="100" class="res-img-thumbnail b-radius-5">
+                    <article class="text-results-wrapper">
+                        <h4 class="header-title">Title Results here</h4>
+                        <p class="except-text-res">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe pariatur consectetur vel libero aut debitis.</p>
+                    </article>
+                </a>
+                <div class="search-results">
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script/app.js" type="module"></script>
+</body>
+
+</html>
