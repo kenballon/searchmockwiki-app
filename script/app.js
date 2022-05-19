@@ -14,7 +14,7 @@ document.addEventListener("readystatechange", (e) => {
 });
 
 const initApp = () => {
-    console.log("%c App is loaded....", "color:green;");
+    console.log("%c App is loaded....", "background-color:green;");
 
     //set focus
     setSearchFocus();
@@ -22,19 +22,21 @@ const initApp = () => {
     //TODO: 3 listeners clear text
 
     const form = document.getElementById("searchbar");
-    form.addEventListener("onsubmit", submitTheSearch);
+    form.addEventListener("submit", submitTheSearch);
 };
 
 // procedural "workflow" function
-const submitTheSearch = (e) => {
-    console.log('checking...');
+const submitTheSearch = (e) => {    
+    
     e.preventDefault();
+
     deleteSearchResults();
     processTheSearch();
     setSearchFocus();
 };
 
 const processTheSearch = async() => {
+    console.log('checking...');
     clearStatsLine();
     const searchTerm = getSearchTerm();
     if (searchTerm === "") return;

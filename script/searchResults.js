@@ -1,75 +1,44 @@
 export const deleteSearchResults = () => {
-    const parentElement = document.getElementById('search-results');
-    let child = parentElement.lastElementChild;
-    while (child) {
-        parentElement.removeChild(child);
-        child = parentElement.lastElementChild;
-    }
-}
+  const parentElement = document.getElementById("search-results");
+  let child = parentElement.lastElementChild;
+  while (child) {
+    parentElement.removeChild(child);
+    child = parentElement.lastElementChild;
+  }
+};
 
-export const buildSearchResults = async(resArray) => {
-    resArray.forEach(res => {
-        const resultItem = createResulttem(res);
-        const resultContents = document.createElement('div');
-        resultContents.classList.add('result-contents');
-        if (resultContents.img) {
-            const resultImage = createResultImage(res);
-            resultContents.append(resultImage);
-        }
-        const resultText = createResultText(res);
-        resultContents.append(resultText);
-        resultItem.append(resultContents);
-        const searchResults = document.getElementById('search-results'); // TODO: check this id if it exist in the DOM
-        searchResults.append(resultItem);
-    });
-}
+export const buildSearchResults = (resArray) => {
+    const resultsContainer = document.querySelector('.results-container');
+    let returnedData = ''
 
-// helper functions 
-const createResulttem = result => {
-    const resultItem = document.createElement('div');
-    resultItem.classList.add('result-item');
-    const resultTitle = document.createElement('div');
-    resultTitle.classList.add('result-title-heading');
-    const link = createElement('a');
-    link.href = `https://en.wikipedia.org/?curid=${result.id}`;
-    link.textContent = result.title;
-    link.target = "_blank";
-    resultTitle.append(link);
-    resultItem.append(resultTitle);
-    return resultItem;
-}
+  resArray.map((res) => {
+    console.log(res);
+    returnedData += `
+    <a href="https://en.wikipedia.org/?curid=${res.id}" class="link-search-res-block d-flex gap-1 my-4" target="_blank">
+        <img src="${res.img || null}" alt="" width="100" height="100" class="res-img-thumbnail b-radius-5">
+        <article class="text-results-wrapper">
+            <h4 class="header-title">${res.title}</h4>
+            <p class="except-text-res">${res.snippet}</p>
+        </article>
+    </a>
+    `;
 
-const createResultImage = (result) => {
-    const resultImage = document.createElement('div');
-    resultImage.classList.add('result-image');
-    const img = document.createElement('img');
-    img.src = result.img;
-    img.alt = result.title;
-    resultImage.append(img);
+    return returnedData;
+  });
 
-    return resultImage;
-}
+  resultsContainer.insertAdjacentHTML('beforeend', returnedData)
+};
 
-const createResultText = (result) => {
-    const resultText = document.createElement('div');
-    resultText.classList.add('result-text');
-    const resultDesc = document.createElement('p');
-    resultDesc.classList.add('result-desc');
-    resultDesc.textContent = result.text;
-    resultText.append(resultDesc);
-
-    return resultText;
-}
 
 export const clearStatsLine = () => {
-    document.getElementById('stats-results').textContent = '';
-}
+  document.getElementById("stats-results").textContent = "";
+};
 
 export const setStatsline = (numOfResults) => {
-    const statsLine = document.getElementById('stats-results');
-    if (numOfResults) {
-        statsLine.textContent = `Displaying ${numOfResults} results.`;
-    } else {
-        statsLine.textContent = 'Sorry, no results';
-    }
-}
+  const statsLine = document.getElementById("stats-results");
+  if (numOfResults) {
+    statsLine.textContent = `Displaying ${numOfResults} results.`;
+  } else {
+    statsLine.textContent = "Sorry, no results";
+  }
+};
