@@ -12,7 +12,6 @@ export const retrieveSearchResults = async(searTerm) => {
 
     if (wikiSearchResults.hasOwnProperty("query")) {
         resArray = processWikiResults(wikiSearchResults.query.pages);
-        // resArray = processWikiResults(wikiSearchResults.query);
     }
     return resArray;
 }
@@ -21,8 +20,6 @@ const getWikiSearchString = (searchTerm) => {
     const maxChars = getMaxChars();
 
     const rawSearchString = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${searchTerm}&gsrlimit=20&prop=pageimages|extract&exchars=${maxChars}&exintro&explaintext&exlimit=max&format=json&origin=*`;
-    // const rawSearchString = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${searchTerm}&gsrlimit=20&format=json&origin=*`;    
-    
 
     const searchString = encodeURI(rawSearchString);
     return searchString;
@@ -54,13 +51,13 @@ const processWikiResults = (results) => {
     Object.keys(results).forEach(key => {
         const id = key;
         const title = results[key].title;
-        const snippet = results[key].snippet;
+        const text = results[key].text;
         const img = results[key].hasOwnProperty('thumbnail') ? results[key].thumbnail.source : null;
 
         const item = {
             id: id,
             title: title,
-            snippet: snippet,
+            text: text,
             img: img
         }
 
